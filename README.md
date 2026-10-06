@@ -4,6 +4,8 @@
 
 North is a 0 to 1 take on online shopping. Instead of browsing and comparing, you tell North what you need (a "mission") and a team of AI agents plans, compares and recommends the purchase for you, using reasoning and what they remember about you.
 
+**Live demo:** https://north.bolt.host/
+
 **Impact goal:** reduce time to purchase by 40%.
 
 ## The problem
