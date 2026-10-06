@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode — kept for completeness, dark is primary */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 70% 45%;
+    --radius: 0.75rem;
+
+    /* North brand palette */
+    --north-bg: 150 20% 4%;
+    --north-surface: 150 18% 7%;
+    --north-surface-2: 150 15% 10%;
+    --north-border: 150 12% 16%;
+    --north-text: 150 15% 96%;
+    --north-muted: 150 10% 55%;
+    --north-accent: 142 70% 50%;
+    --north-accent-2: 173 80% 45%;
+    --north-warm: 35 90% 60%;
+    --north-danger: 0 72% 58%;
+
+    --chart-1: 142 70% 50%;
+    --chart-2: 173 80% 45%;
+    --chart-3: 35 90% 60%;
+    --chart-4: 200 85% 55%;
+    --chart-5: 280 65% 60%;
+  }
+
+  .dark {
+    --background: 150 20% 4%;
+    --foreground: 150 15% 96%;
+    --card: 150 18% 7%;
+    --card-foreground: 150 15% 96%;
+    --popover: 150 18% 7%;
+    --popover-foreground: 150 15% 96%;
+    --primary: 150 15% 96%;
+    --primary-foreground: 150 20% 4%;
+    --secondary: 150 15% 10%;
+    --secondary-foreground: 150 15% 96%;
+    --muted: 150 15% 10%;
+    --muted-foreground: 150 10% 55%;
+    --accent: 142 70% 50%;
+    --accent-foreground: 150 20% 4%;
+    --destructive: 0 72% 58%;
+    --destructive-foreground: 150 15% 96%;
+    --border: 150 12% 16%;
+    --input: 150 12% 16%;
+    --ring: 142 70% 50%;
+
+    --chart-1: 142 70% 50%;
+    --chart-2: 173 80% 45%;
+    --chart-3: 35 90% 60%;
+    --chart-4: 200 85% 55%;
+    --chart-5: 280 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: hsl(var(--north-accent) / 0.25);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--north-surface) / 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  .glass-strong {
+    background: hsl(var(--north-surface) / 0.85);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent);
+    mask-image: linear-gradient(to right, black 80%, transparent);
+  }
+}
+
+@keyframes north-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes north-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes north-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes north-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes north-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-pulse-slow { animation: north-pulse 2.4s ease-in-out infinite; }
+.animate-float { animation: north-float 5s ease-in-out infinite; }
+.animate-orbit { animation: north-orbit 24s linear infinite; }
+.animate-blink { animation: north-blink 1.1s step-end infinite; }
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--north-surface-2)) 0%,
+    hsl(var(--north-border)) 50%,
+    hsl(var(--north-surface-2)) 100%
+  );
+  background-size: 200% 100%;
+  animation: north-shimmer 1.8s linear infinite;
+}
